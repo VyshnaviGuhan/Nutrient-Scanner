@@ -1,5 +1,5 @@
 Nutrient Scanner
-Redi Backend course, Spring 26, Mini project 1.
+
 
 Overview
 Build a food ingredient analyzer that identifies healthy and harmful ingredients.
