@@ -1,18 +1,3 @@
-"""
-Nutrient Scanner - Streamlit Application
-========================================
-
-A mobile-friendly app to scan food ingredients and analyze their health impact.
-
-To run:
-    uv run streamlit run streamlit_app.py
-
-For mobile testing:
-    uv run streamlit run streamlit_app.py --server.address 0.0.0.0
-
-Then access from your phone using your computer's IP address.
-"""
-
 import os
 from pathlib import Path
 
@@ -26,32 +11,7 @@ st.set_page_config(
 )
 
 st.markdown(
-    """
-    <style>
-    .stApp {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .stage-complete {
-        color: #28a745;
-        font-weight: bold;
-    }
-    .stage-pending {
-        color: #6c757d;
-    }
-    .health-score {
-        font-size: 3rem;
-        font-weight: bold;
-        text-align: center;
-        padding: 1rem;
-        border-radius: 1rem;
-    }
-    .score-excellent { background-color: #d4edda; color: #155724; }
-    .score-good { background-color: #cce5ff; color: #004085; }
-    .score-fair { background-color: #fff3cd; color: #856404; }
-    .score-poor { background-color: #f8d7da; color: #721c24; }
-    </style>
-    """,
+    ,
     unsafe_allow_html=True,
 )
 
@@ -64,7 +24,7 @@ README_PATH = Path(__file__).parent / "README.md"
 
 @st.dialog("Assignment Guide", width="large")
 def show_assignment_guide():
-    """Display the README in a dialog."""
+    
     if README_PATH.exists():
         st.markdown(README_PATH.read_text())
     else:
@@ -72,7 +32,7 @@ def show_assignment_guide():
 
 
 def show_progress_sidebar():
-    """Display assignment progress in the sidebar."""
+    
     with st.sidebar:
         st.header("📊 Assignment Progress")
         status = get_completion_status()
@@ -95,10 +55,8 @@ def show_progress_sidebar():
 
 
 def get_sample_ingredients() -> str:
-    """Return sample ingredients for testing."""
-    return """Water, High Fructose Corn Syrup, Sugar, Contains 2% or Less of:
-    Citric Acid, Natural Flavors, Salt, Sodium Benzoate (Preservative),
-    Red 40, Blue 1"""
+
+    return 
 
 
 def main():
@@ -182,7 +140,7 @@ def main():
 
 
 def analyze_ingredients_text(text: str):
-    """Analyze the ingredients from text input."""
+    
     if not text.strip():
         st.warning("Please enter some ingredients first!")
         return
@@ -242,7 +200,7 @@ def analyze_ingredients_text(text: str):
 
 
 def process_image(image_bytes: bytes):
-    """Process an uploaded or captured image using Gemini API."""
+    
     try:
         from google import genai
         from google.genai import types
@@ -308,7 +266,7 @@ def process_image(image_bytes: bytes):
 
 
 def show_results():
-    """Display analysis results."""
+    
     if not st.session_state.analysis_complete:
         st.info(
             "No analysis results yet. Enter ingredients or take a photo to get started!"
