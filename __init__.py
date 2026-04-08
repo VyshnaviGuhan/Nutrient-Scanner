@@ -1,16 +1,7 @@
-"""
-Stages Package
-==============
-
-This module provides stage detection and completion tracking for the
-Nutrient Scanner assignment.
-"""
-
 from typing import NamedTuple
 
 
 class StageInfo(NamedTuple):
-    """Information about a stage."""
     number: int
     name: str
     concepts: str
@@ -19,15 +10,7 @@ class StageInfo(NamedTuple):
 
 
 def check_stage_implementation(stage_number: int) -> bool:
-    """
-    Check if a specific stage is implemented.
-
-    Args:
-        stage_number: The stage number (1-8)
-
-    Returns:
-        True if the stage is implemented, False otherwise.
-    """
+    
     try:
         if stage_number == 1:
             from stages.stage1_parsing import is_implemented
@@ -60,12 +43,7 @@ def check_stage_implementation(stage_number: int) -> bool:
 
 
 def get_all_stages() -> list[StageInfo]:
-    """
-    Get information about all stages.
 
-    Returns:
-        A list of StageInfo namedtuples with stage details.
-    """
     stages = [
         (1, "Parsing", "String manipulation", "stage1_parsing"),
         (2, "Ingredient", "Classes & types", "stage2_ingredient"),
@@ -90,16 +68,7 @@ def get_all_stages() -> list[StageInfo]:
 
 
 def get_completion_status() -> dict:
-    """
-    Get a summary of completion status.
-
-    Returns:
-        A dictionary with:
-        - completed: Number of completed stages
-        - total: Total number of stages
-        - percentage: Completion percentage
-        - stages: List of StageInfo objects
-    """
+   
     stages = get_all_stages()
     completed = sum(1 for s in stages if s.is_implemented)
     total = len(stages)
