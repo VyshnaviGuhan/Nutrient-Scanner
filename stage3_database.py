@@ -1,105 +1,25 @@
-"""
-Stage 3: Ingredient Database
-============================
-Concepts: Dictionaries, JSON, file handling, data structures
-
-To test your work:
-    uv run python stages/stage3_database.py
-
-Your Task:
-----------
-Create an IngredientDatabase class that loads ingredient data from a JSON file
-and provides lookup methods.
-
-Learning Objectives:
-- Load and parse JSON files
-- Work with nested dictionaries
-- Implement class methods for data access
-- Use the .get() method for safe dictionary access
-"""
-
 import json
 from pathlib import Path
 from typing import Optional
 
 
 class IngredientDatabase:
-    """
-    A database of ingredients loaded from a JSON file.
-
-    The JSON file has this structure:
-    {
-        "ingredients": {
-            "sugar": {
-                "category": "harmful",
-                "health_score": 2,
-                "description": "Added sugars contribute to obesity"
-            },
-            ...
-        },
-        "categories": {
-            "healthy": {"color": "green", "description": "...", "score_range": [7, 10]},
-            ...
-        }
-    }
-
-    Example usage:
-        >>> db = IngredientDatabase("data/ingredients_db.json")
-        >>> db.lookup("sugar")
-        {'category': 'harmful', 'health_score': 2, 'description': '...'}
-        >>> db.lookup("unknown_item")
-        None
-        >>> db.get_all_ingredients()
-        ['sugar', 'water', 'salt', ...]
-    """
-
+    
     def __init__(self, json_path: str):
-        """
-        Initialize the database by loading data from a JSON file.
-
-        Args:
-            json_path: Path to the JSON file containing ingredient data
-
-        Raises:
-            FileNotFoundError: If the JSON file doesn't exist
-            json.JSONDecodeError: If the JSON is invalid
-        """
+       
         self.json_path = json_path
 
         with open(json_path, 'r') as file:
             data = json.load(file)
 
-        # 1. Store the json_path as an instance variable
-        # 2. Load the JSON file and parse it
-        # 3. Store the "ingredients" dict as self._ingredients
-        # 4. Store the "categories" dict as self._categories
-        #
-        # Hints:
-        # - Use open(json_path, 'r') to open the file
-        # - Use json.load(file) to parse the JSON
-        # - Remember to close the file (or use a 'with' statement)
-        #
-        # Delete the lines below and write your implementation:
+        
         self._ingredients: dict = data["ingredients"]
         self._categories: dict = data["categories"]
     
-        # ============================================================
+        
 
     def lookup(self, ingredient_name: str) -> Optional[dict]:
-        """
-        Look up an ingredient by name.
-
-        Args:
-            ingredient_name: The name of the ingredient to look up (case-insensitive)
-
-        Returns:
-            A dictionary with 'category', 'health_score', and 'description' keys,
-            or None if the ingredient is not found.
-
-        Example:
-            >>> db.lookup("Sugar")  # Note: case-insensitive
-            {'category': 'harmful', 'health_score': 2, 'description': '...'}
-        """
+        
         return self._ingredients.get(ingredient_name.lower())
     
     
